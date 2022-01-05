@@ -10,12 +10,12 @@ Note: This code may not work for controllers other than a Nintendo Switch Pro Co
 git clone https://github.com/CrazyAZ/BLSS-Left-Stick-Scrutinizer
 cd BLSS-Left-Stick-Scrutinizer
 ```
-1. Make sure the required dependencies are installed:
+2. Make sure the required dependencies are installed:
 ```bash
 pip3 install -r requirements.txt
 ```
-1. Connect Pro Controller to computer via Bluetooth or cable.
-1. Run the analog stick viewer:
+3. Connect Pro Controller to computer via Bluetooth or cable.
+4. Run the analog stick viewer:
 ```bash
 python3 viewer.py
 ```
