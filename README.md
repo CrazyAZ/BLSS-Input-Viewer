@@ -17,7 +17,7 @@ pip3 install -r requirements.txt
 3. Connect Pro Controller to computer via Bluetooth or cable.
 4. Run the analog stick viewer:
 ```bash
-python3 viewer.py
+python3 src/viewer.py
 ```
-`procon.py` can be run on its own to see all the controller inputs printed out.
+`src/procon.py` can be run on its own to see all the controller inputs printed out.
 
