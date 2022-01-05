@@ -1,11 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from numpy.core.overrides import ArgSpec
 import procon
 from threading import Thread, Lock
 from collections import deque
-import time
 
 FPS = 30
 STICK_MAX = 2**15
