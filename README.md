@@ -3,7 +3,7 @@ A python script for visualizing analog stick inputs on a Nintendo Switch Pro Con
 
 Note: This code may not work for controllers other than a Nintendo Switch Pro Controller.
 
-# Quickstart
+## Quickstart
 
 1. Clone this repository and navigate into the directory:
 ```bash
