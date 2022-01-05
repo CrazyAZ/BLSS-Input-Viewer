@@ -80,8 +80,9 @@ class ProCon:
         self.enable_imu(True)
         self.set_imu_sensitivity(ProCon.DEFAULT_IMU_SENSITIVITY)
 
+    run = True
     def start(self, callback):
-        while True:
+        while self.run:
             state = self.recv()
             if state[0] != ProCon.InputReportID.CONTROLLER_STATE:
                 continue
@@ -123,6 +124,9 @@ class ProCon:
             callback(buttons, l_stick, r_stick, accel, gyro, battery)
             if self.rumble_expire and int(time.time() * 1000) >= self.rumble_expire:
                 self.send_rumble(False, False, 0)
+
+    def stop(self):
+        self.run = False
 
     def load_stick_calibration(self):
         ok, reply = self.spi_flash_read(ProCon.CALIBRATION_OFFSET, ProCon.CALIBRATION_LENGTH)

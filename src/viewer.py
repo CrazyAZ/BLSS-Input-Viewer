@@ -76,12 +76,8 @@ def main():
     ani = FuncAnimation(fig, update_plot, interval=1000.0/FPS, init_func=init_plot, blit=True)
     plt.show()
 
-    # while True:
-    #     curr_time = time.monotonic()
-    #     if curr_time - prev_time < 1.0 / FPS:
-    #         continue
-    #     prev_time = curr_time
-
+    controller.stop()
+    t.join()
 
 if __name__ == '__main__':
     main()
