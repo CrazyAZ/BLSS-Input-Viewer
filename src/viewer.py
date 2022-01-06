@@ -36,6 +36,7 @@ def main():
 
     fig, ax = plt.subplots()
     ln, = plt.plot([], [], color='r')
+    dot, = plt.plot([], [], 'o', c='r')
     artists = []
 
     def init_plot():
@@ -54,6 +55,7 @@ def main():
         artists.append(y_axis)
 
         artists.append(ln)
+        artists.append(dot)
 
         return artists
 
@@ -70,6 +72,7 @@ def main():
         L_Y.append(l_y)
 
         ln.set_data(L_X, L_Y)
+        dot.set_data([l_x], [l_y])
         return artists
         
 
