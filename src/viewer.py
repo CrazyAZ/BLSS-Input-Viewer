@@ -8,6 +8,7 @@ from collections import deque
 FPS = 30
 STICK_MAX = 2**15
 LEN_QUEUE = 30
+DEADZONE_RADIUS = 0.05
 
 def main():
     L = np.zeros(2)
@@ -35,24 +36,27 @@ def main():
     L_Y = deque(np.zeros(LEN_QUEUE))
 
     fig, ax = plt.subplots()
-    ln, = plt.plot([], [], color='r')
-    dot, = plt.plot([], [], 'o', c='r')
+    ln, = plt.plot([], [], color='b')
+    dot, = plt.plot([], [], 'o', c='b')
     artists = []
 
     def init_plot():
         ax.set_aspect('equal')
-        ax.set_xlim(-1, 1)
-        ax.set_ylim(-1, 1)
+        ax.set_xlim(-1.1, 1.1)
+        ax.set_ylim(-1.1, 1.1)
         plt.axis('off')
-
-        theta = np.linspace(0, 2*np.pi, 128)
-        circle, = plt.plot(np.cos(theta), np.sin(theta), color='k')
-        artists.append(circle)
 
         x_axis, = plt.plot([-1, 1], [0, 0], color='k', alpha=0.5)
         y_axis, = plt.plot([0, 0], [-1, 1], color='k', alpha=0.5)
         artists.append(x_axis)
         artists.append(y_axis)
+        deadzone = plt.Circle((0, 0), DEADZONE_RADIUS, color='k', alpha=0.5, linewidth=0)
+        ax.add_patch(deadzone)
+        artists.append(deadzone)
+
+        circle = plt.Circle((0, 0), 1, color='k', linewidth=5, fill=False)
+        ax.add_patch(circle)
+        artists.append(circle)
 
         artists.append(ln)
         artists.append(dot)
@@ -70,6 +74,11 @@ def main():
         L_Y.popleft()
         L_X.append(l_x)
         L_Y.append(l_y)
+
+        if np.linalg.norm([l_x, l_y]) < DEADZONE_RADIUS:
+            artists[3].set_color('r')
+        else:
+            artists[3].set_color('k')
 
         ln.set_data(L_X, L_Y)
         dot.set_data([l_x], [l_y])
